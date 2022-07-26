@@ -1,0 +1,43 @@
+ENDPOINTS
+
+POST
+/generateToken
+Header: none
+Body: email, password
+Returns:
+- token integer
+Notes: Token will last for 15 minutes
+
+GET
+/checkValidity
+Header: token (
+    Format: "Bearer <token>"
+)
+Body: voucherCode
+Returns: 
+- validity Bool (
+    False if voucher code isn't valid
+    False if voucher is taken
+    True if it is valid
+)
+- reason text (
+    Wrong Code if voucher code doesn't match
+    Voucher Taken if voucher has already been used
+    na if voucher is valid
+)
+
+GET
+/checkValue
+Header: token (
+    Format: "Bearer <token>"
+)
+Body: voucherCode
+Returns: 
+- voucherValue integer
+
+POST
+/finish
+Parameters: None
+Returns: None (
+    Finish with database
+)
